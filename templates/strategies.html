@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strategy Page - Stock Portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: rgba(231, 221, 194, 0.9); 
+            color: white;
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('media/bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: rgba(231, 221, 194, 0.9);
+            opacity: 0.5;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .back-btn {
+            background: black;
+            border: none;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            text-decoration: none;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transform: scale(1);
+            animation: fadeInSlide 0.6s ease-in-out;
+            font-weight: 600;
+            padding: 10px 16px;
+            border-radius: 8px;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            color: white;
+            background-color: #e0b058;
+            transform: scale(1.03);
+            box-shadow: 0 6px 12px rgba(218, 165, 32, 0.4);
+        }
+
+        .search-container {
+            position: relative;
+        }
+
+        .search-input {
+            background-color: #2a2a2a;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            padding: 12px 40px;
+            width: 300px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px goldenrod;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+        }
+
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            padding: 20px 0;
+        }
+
+        .strategy-card {
+            background-color: #2a2a2a;
+            border-radius: 12px;
+            padding: 24px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .strategy-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(255, 215, 0, 0.1);
+        }
+
+        .strategy-header {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .serial-number {
+            background-color: #e0b058;
+            color: #1a1a1a;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .strategy-title {
+            color: #e0b058;
+            font-size: 20px;
+            margin: 12px 0;
+            font-weight: bold;
+        }
+
+        .strategy-description {
+            color: #ccc;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .strategy-info {
+            flex: 1;
+        }
+
+        .card-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .demo-btn {
+            background: #1a1a1a;
+            color: #e0b058;
+            border: 1px solid #e0b058;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .demo-btn:hover {
+            background: #e0b058;
+            color: #1a1a1a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(224, 176, 88, 0.2);
+        }
+
+        /* Toggle Switch Styles */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #444;
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #e0b058;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .search-input {
+                width: 100%;
+            }
+
+            .strategy-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <button onclick="window.location.href='index.html'" class="back-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                Back
+            </button>
+            <div class="search-container">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"/>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                </svg>
+                <input type="text" class="search-input" placeholder="Search strategies...">
+            </div>
+        </div>
+
+        <div class="strategy-grid">
+            <!-- Strategy Card 1 -->
+            <div class="strategy-card">
+                <div class="strategy-header">
+                    <div class="serial-number">01</div>
+                </div>
+                <div class="strategy-info">
+                    <h3 class="strategy-title">Value Investing</h3>
+                    <p class="strategy-description">Long-term investment approach focusing on undervalued stocks with strong fundamentals.</p>
+                </div>
+                <div class="card-actions">
+                    <button class="demo-btn">Demo</button>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Strategy Card 2 -->
+            <div class="strategy-card">
+                <div class="strategy-header">
+                    <div class="serial-number">02</div>
+                </div>
+                <div class="strategy-info">
+                    <h3 class="strategy-title">Growth Strategy</h3>
+                    <p class="strategy-description">Focus on companies with high potential for future earnings and revenue growth.</p>
+                </div>
+                <div class="card-actions">
+                    <button class="demo-btn">Demo</button>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Strategy Card 3 -->
+            <div class="strategy-card">
+                <div class="strategy-header">
+                    <div class="serial-number">03</div>
+                </div>
+                <div class="strategy-info">
+                    <h3 class="strategy-title">Dividend Strategy</h3>
+                    <p class="strategy-description">Investment in stable companies that provide regular dividend payments.</p>
+                </div>
+                <div class="card-actions">
+                    <button class="demo-btn">Demo</button>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Strategy Card 4 -->
+            <div class="strategy-card">
+                <div class="strategy-header">
+                    <div class="serial-number">04</div>
+                </div>
+                <div class="strategy-info">
+                    <h3 class="strategy-title">Momentum Trading</h3>
+                    <p class="strategy-description">Capitalize on continuing market trends and price movements.</p>
+                </div>
+                <div class="card-actions">
+                    <button class="demo-btn">Demo</button>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Strategy Card 5 -->
+            <div class="strategy-card">
+                <div class="strategy-header">
+                    <div class="serial-number">05</div>
+                </div>
+                <div class="strategy-info">
+                    <h3 class="strategy-title">Index Investment</h3>
+                    <p class="strategy-description">Passive strategy tracking market indices for consistent returns.</p>
+                </div>
+                <div class="card-actions">
+                    <button class="demo-btn">Demo</button>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Strategy Card 6 -->
+            <div class="strategy-card">
+                <div class="strategy-header">
+                    <div class="serial-number">06</div>
+                </div>
+                <div class="strategy-info">
+                    <h3 class="strategy-title">Swing Trading</h3>
+                    <p class="strategy-description">Short to medium-term trading capturing price movements.</p>
+                </div>
+                <div class="card-actions">
+                    <button class="demo-btn">Demo</button>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Strategy Card 7 -->
+            <div class="strategy-card">
+                <div class="strategy-header">
+                    <div class="serial-number">07</div>
+                </div>
+                <div class="strategy-info">
+                    <h3 class="strategy-title">Day Trading</h3>
+                    <p class="strategy-description">Active trading strategy with positions opened and closed within the same day.</p>
+                </div>
+                <div class="card-actions">
+                    <button class="demo-btn">Demo</button>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Strategy Card 8 -->
+            <div class="strategy-card">
+                <div class="strategy-header">
+                    <div class="serial-number">08</div>
+                </div>
+                <div class="strategy-info">
+                    <h3 class="strategy-title">Options Strategy</h3>
+                    <p class="strategy-description">Advanced trading using options contracts for leverage and hedging.</p>
+                </div>
+                <div class="card-actions">
+                    <button class="demo-btn">Demo</button>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Strategy Card 9 -->
+            <div class="strategy-card">
+                <div class="strategy-header">
+                    <div class="serial-number">09</div>
+                </div>
+                <div class="strategy-info">
+                    <h3 class="strategy-title">Sector Rotation</h3>
+                    <p class="strategy-description">Dynamic allocation across different market sectors based on economic cycles.</p>
+                </div>
+                <div class="card-actions">
+                    <button class="demo-btn">Demo</button>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Strategy Card 10 -->
+            <div class="strategy-card">
+                <div class="strategy-header">
+                    <div class="serial-number">10</div>
+                </div>
+                <div class="strategy-info">
+                    <h3 class="strategy-title">Income Strategy</h3>
+                    <p class="strategy-description">Focus on generating regular income through various investment vehicles.</p>
+                </div>
+                <div class="card-actions">
+                    <button class="demo-btn">Demo</button>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

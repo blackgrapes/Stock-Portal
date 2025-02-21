@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('media/bg.jpg'); /* You'll need to replace with actual image path */
+    background-color: rgba(231, 221, 194, 0); 
+                       color: rgba(255, 255, 255, 0.172);
+
+    
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.5; /* Adjust opacity as needed */
+    z-index: -1;
+}
+
+        
+
+        .nav-bar {
+            background-color: #1a1a1a;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            color: white;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            z-index: 100;
+        }
+
+        .back-button {
+            background: transparent;
+            border: 1px solid #e0b058;
+            color: #e0b058;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+
+        .back-button:hover {
+            background: #e0b058;
+            color: white;
+            box-shadow: 0 4px 15px rgba(224, 176, 88, 0.4);
+        }
+
+        .support-container {
+            padding: 2rem;
+            background-color: rgba(255, 230, 183, 0.108);
+            min-height: calc(100vh - 72px);
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        .support-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .support-header h1 {
+            color: #1a1a1af3;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .support-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            transition: all 0.3s ease;
+        }
+
+        .support-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .support-card h3 {
+            color: #1a1a1a;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #e0b058;
+            padding-bottom: 0.5rem;
+        }
+
+        .support-card p {
+            color: #4a4a4a;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .support-button {
+            background-color: #e0b058;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(224, 176, 88, 0.3);
+        }
+
+        .support-button:hover {
+            background-color: #c89844;
+            box-shadow: 0 6px 15px rgba(224, 176, 88, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .support-container {
+                padding: 1rem;
+            }
+            
+            .support-header h1 {
+                font-size: 2rem;
+            }
+
+            .nav-bar {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-bar">
+        
+        <a href="index.html" class="back-button">
+            ← Back to Dashboard
+        </a>
+    </nav>
+
+    <div class="support-container">
+        <div class="support-header">
+            <h1>How Can We Help You?</h1>
+            <p>We're here to provide you with the assistance you need for your investment journey</p>
+        </div>
+        
+        <div class="support-grid">
+            <div class="support-card">
+                <h3>FAQs</h3>
+                <p>Find quick answers to common questions about our platform, features, and investment tools.</p>
+                <a href="#" class="support-button">View FAQs</a>
+            </div>
+            
+            <div class="support-card">
+                <h3>Technical Support</h3>
+                <p>Having technical issues? Our support team is available 24/7 to help resolve any problems.</p>
+                <a href="#" class="support-button">Get Help</a>
+            </div>
+            
+            <div class="support-card">
+                <h3>Contact Us</h3>
+                <p>Reach out to our customer service team through email, phone, or live chat for personalized assistance.</p>
+                <a href="#" class="support-button">Contact Now</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

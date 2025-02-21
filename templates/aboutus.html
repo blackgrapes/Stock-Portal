@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Stock Portal</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('media/bg.jpg'); /* You'll need to replace with actual image path */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.3; /* Adjust opacity as needed */
+    z-index: -1;
+}
+        
+
+        body {
+            background-color: #121212;
+            color: #FFFFFF;
+            text-align: center;
+        }
+
+        /* Back Button */
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #e0b058;;
+            color: #000;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .back-button:hover {
+            background-color: #c9973a;;
+        }
+
+        /* About Section */
+        .about-container {
+            max-width: 900px;
+            margin: 80px auto 20px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .about-container:hover {
+            transform: scale(1.03);
+        }
+
+        .about-container h2 {
+            font-size: 34px;
+            margin-bottom: 15px;
+            color: #e0b058;;
+        }
+
+        .about-container p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #E0E0E0;
+        }
+
+        /* Services Section */
+        .services {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .services h2 {
+            font-size: 32px;
+            color: #e0b058;;
+            margin-bottom: 20px;
+        }
+
+        .service-box {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.1);
+            width: 250px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card h3 {
+            color: #e0b058;
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            font-size: 16px;
+            color: #E0E0E0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .about-container, .services {
+                width: 90%;
+            }
+
+            .about-container h2, .services h2 {
+                font-size: 28px;
+            }
+
+            .about-container p, .service-card p {
+                font-size: 16px;
+            }
+
+            .service-box {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .service-card {
+                width: 90%;
+            }
+
+            .back-button {
+                font-size: 14px;
+                padding: 8px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Back Button -->
+    <button class="back-button" onclick="history.back()">⬅ Back</button>
+
+    <!-- About Us Section -->
+    <div class="about-container">
+        <h2>About Stock Portal</h2>
+        <p>Stock Portal is your ultimate destination for smart and efficient investing. We provide traders and investors with real-time market data, advanced analytics, and AI-driven insights to help you make informed decisions.</p>
+        <p>Whether you're a beginner or a seasoned investor, our platform offers state-of-the-art tools, financial news, and expert strategies to ensure you stay ahead in the stock market.</p>
+    </div>
+
+    <!-- Services Section -->
+    <div class="services">
+        <h2>Our Services</h2>
+        <div class="service-box">
+            <div class="service-card">
+                <h3>Real-time Market Data</h3>
+                <p>Get instant access to stock prices, trends, and market movements in real-time.</p>
+            </div>
+            <div class="service-card">
+                <h3>Technical Analysis</h3>
+                <p>Use advanced indicators and charting tools to analyze stocks and predict market trends.</p>
+            </div>
+            <div class="service-card">
+                <h3>AI Stock Predictions</h3>
+                <p>Leverage AI-powered insights to make smarter and more accurate investment decisions.</p>
+            </div>
+            <div class="service-card">
+                <h3>Portfolio Management</h3>
+                <p>Track and manage your investments with our personalized portfolio tracking system.</p>
+            </div>
+            <div class="service-card">
+                <h3>Financial News & Updates</h3>
+                <p>Stay updated with the latest stock market news, economic reports, and financial trends.</p>
+            </div>
+            <div class="service-card">
+                <h3>Trading Strategies</h3>
+                <p>Explore various trading strategies, from day trading to long-term investing techniques.</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
