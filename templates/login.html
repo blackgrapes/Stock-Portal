@@ -1,208 +1,196 @@
 <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Login - Stock Portal</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-        <style>
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Stock Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: rgb(231, 221, 194);
+            color: #2c3e50;
+            line-height: 1.6;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-image: url(media/bg.jpg);
+            opacity: 0.5;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.5;
+            z-index: -1;
+        }
+
+        .login-container {
+            background: #fffffff7;
+            padding: 32px;
+            border-radius: 8px;
+            width: 400px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .login-header h2 {
+            color: #000000;
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .login-form {
+            margin-top: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #606c7c;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e1e5ea;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: goldenrod;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 12px;
+            background: #000000;
+            color: wheat;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: goldenrod;
+            color: #000000;
+            transform: translateY(-2px);
+        }
+
+        .form-footer {
+            margin-top: 20px;
+            text-align: center;
+            color: #606c7c;
+        }
+
+        .form-footer a {
+            color: goldenrod;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .form-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .back-to-home {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            background-color: black;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            padding: 10px 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transform: scale(1);
+            animation: fadeInSlide 0.6s ease-in-out;
+        }
+        
+        .back-to-home:hover {
+            color: white;
+            background-color: goldenrod;
+            transform: scale(1.03);
+            box-shadow: 0 6px 12px rgba(218, 165, 32, 0.4);
+        }
+        
+        /* Entrance Animation */
+        @keyframes fadeInSlide {
+            0% {
+                opacity: 0;
+                transform: translateY(-10px);
             }
-    
-            body {
-                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-                background: rgb(231, 221, 194);
-                color: #2c3e50;
-                line-height: 1.6;
-                height: 100vh;
-                display: flex;
-                justify-content: center;
-                align-items: center;
+            100% {
+                opacity: 1;
+                transform: translateY(0);
             }
-    
-            body::before {
-                content: '';
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-size: cover;
-                background-image: url(media/bg.jpg);
-                opacity: 0.5;
-                background-position: center;
-                background-repeat: no-repeat;
-                opacity: 0.5;
-                z-index: -1;
-            }
-    
-            .login-container {
-                background: #fffffff7;
-                padding: 32px;
-                border-radius: 8px;
-                width: 400px;
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            }
-    
-            .login-header {
-                text-align: center;
-                margin-bottom: 24px;
-            }
-    
-            .login-header h2 {
-                color: #000000;
-                font-size: 24px;
-                margin-bottom: 8px;
-            }
-    
-            .login-form {
-                margin-top: 24px;
-            }
-    
-            .form-group {
-                margin-bottom: 20px;
-            }
-    
-            .form-group label {
-                display: block;
-                margin-bottom: 8px;
-                color: #606c7c;
-                font-weight: 500;
-            }
-    
-            .form-group input {
-                width: 100%;
-                padding: 12px;
-                border: 2px solid #e1e5ea;
-                border-radius: 4px;
-                font-size: 14px;
-                transition: border-color 0.3s ease;
-            }
-    
-            .form-group input:focus {
-                outline: none;
-                border-color: goldenrod;
-            }
-    
-            .btn-primary {
-                width: 100%;
-                padding: 12px;
-                background: #000000;
-                color: wheat;
-                border: none;
-                border-radius: 4px;
-                font-size: 16px;
-                font-weight: 600;
-                cursor: pointer;
-                transition: all 0.3s ease;
-            }
-    
-            .btn-primary:hover {
-                background: goldenrod;
-                color: #000000;
-                transform: translateY(-2px);
-            }
-    
-            .form-footer {
-                margin-top: 20px;
-                text-align: center;
-                color: #606c7c;
-            }
-    
-            .form-footer a {
-                color: goldenrod;
-                text-decoration: none;
-                font-weight: 500;
-            }
-    
-            .form-footer a:hover {
-                text-decoration: underline;
-            }
-    
-            .back-to-home {
-                position: absolute;
-                top: 20px;
-                left: 20px;
-                color: white;
-                background-color: black;
-                text-decoration: none;
-                display: flex;
-                align-items: center;
-                gap: 8px;
-                font-weight: 600;
-                padding: 10px 16px;
-                border-radius: 8px;
-                transition: all 0.3s ease;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-                transform: scale(1);
-                animation: fadeInSlide 0.6s ease-in-out;
-            }
-            
-            .back-to-home:hover {
-                color: white;
-                background-color: goldenrod;
-                transform: scale(1.03);
-                box-shadow: 0 6px 12px rgba(218, 165, 32, 0.4);
-            }
-            
-            /* Entrance Animation */
-            @keyframes fadeInSlide {
-                0% {
-                    opacity: 0;
-                    transform: translateY(-10px);
-                }
-                100% {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
-            
-        </style>
-    </head>
-    <body>
-        <button onclick="window.location.href='index.html' " class="back-to-home">
-            <i class="fas fa-arrow-left"></i> Back to Home
-        </button>
-    
-        <div class="login-container">
-            <div class="login-header">
-                <h2>Login to Stock Portal</h2>
-            </div>
-            <form class="login-form" action="/login.html" method="POST">
-                <!-- Flash Messages Display -->
-                {% with messages = get_flashed_messages(with_categories=true) %}
-                    {% if messages %}
-                        <div>
-                            {% for category, message in messages %}
-                                <p class="flash {{ category }}">{{ message }}</p>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-                {% endwith %}
-            
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
-                <button type="submit" class="btn-primary">Login</button>
-                <p class="form-footer">Don't have an account? <a href="register.html">Register here</a></p>
-            </form>
-            
+        }
+        
+    </style>
+</head>
+<body>
+    <button onclick="window.location.href='index.html' " class="back-to-home">
+        <i class="fas fa-arrow-left"></i> Back to Home
+    </button>
+
+    <div class="login-container">
+        <div class="login-header">
+            <h2>Login to Stock Portal</h2>
         </div>
-        
-        <script>
-            function redirectToStrategies(event) {
-                event.preventDefault(); // Prevents the default form submission
-                window.location.href = "strategies.html"; // Redirects to strategies.html
-            }
-        </script>
-        
-    </body>
-    </html>
+        <form class="login-form" onsubmit="redirectToStrategies(event)">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn-primary">Login</button>
+            <p class="form-footer">Don't have an account? <a href="register.html">Register here</a></p>
+        </form>
+    </div>
+    
+    <script>
+        function redirectToStrategies(event) {
+            event.preventDefault(); // Prevents the default form submission
+            window.location.href = "strategies.html"; // Redirects to strategies.html
+        }
+    </script>
+    
+</body>
+</html>
