@@ -25,20 +25,22 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('media/bg.jpg');
+            background: url('media/image.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-color: rgba(231, 221, 194, 0.9);
+            background-color: rgba(0, 0, 0, 0.564);
+
             opacity: 0.5;
             z-index: -1;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+        /* Ensure the container has appropriate constraints */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
 
         .header {
             display: flex;
@@ -161,138 +163,155 @@
 
         .strategy-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(2, 1fr); /* Changed to exactly 2 columns */
+            gap: 32px; /* Increased gap between cards for better spacing */
             padding: 20px 0;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-
+        
+        /* Update card width to fit better in the 2-column layout */
         .strategy-card {
             background-color: #2a2a2a;
             border-radius: 12px;
-            padding: 24px;
+            padding: 32px;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
             display: flex;
             flex-direction: column;
+            width: 100%; /* Changed from fixed width to 100% to be responsive */
+            min-height: 280px; /* Changed to min-height instead of fixed height */
+            height: auto; /* Allow height to adapt to content */
         }
 
-        .strategy-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 25px -5px rgba(255, 215, 0, 0.1);
-        }
+.strategy-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 25px -5px rgba(255, 215, 0, 0.1);
+}
 
-        .strategy-header {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            margin-bottom: 16px;
-        }
+.strategy-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 20px; /* Increased margin */
+}
 
-        .serial-number {
-            background-color: #e0b058;
-            color: #1a1a1a;
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 14px;
-        }
+.serial-number {
+    background-color: #e0b058;
+    color: #1a1a1a;
+    width: 32px; /* Slightly larger */
+    height: 32px; /* Slightly larger */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 16px; /* Slightly larger font */
+}
 
-        .strategy-title {
-            color: #e0b058;
-            font-size: 20px;
-            margin: 12px 0;
-            font-weight: bold;
-        }
+.strategy-info {
+    flex: 1;
+    position: relative; /* Add position relative */
+}
 
-        .strategy-description {
-            color: #ccc;
-            font-size: 14px;
-            line-height: 1.5;
-            margin-bottom: 20px;
-        }
+.strategy-title {
+    color: #e0b058;
+    font-size: 24px; /* Larger font size */
+    margin: 12px 0;
+    font-weight: bold;
+    /* Adjust to make space for the buy button */
+    padding-right: 80px;
+    display: inline-block;
+}
 
-        .strategy-info {
-            flex: 1;
-        }
+.strategy-description {
+    color: #ccc;
+    font-size: 16px; /* Larger font size */
+    line-height: 1.5;
+    margin-bottom: 24px; /* Increased margin */
+}
 
-        .card-actions {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: auto;
-        }
+.card-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    gap: 12px; /* Add gap between buttons */
+}
 
-        .demo-btn {
-            background: #1a1a1a;
-            color: #e0b058;
-            border: 1px solid #e0b058;
-            padding: 8px 16px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
+.demo-btn {
+    background: #1a1a1a;
+    color: #e0b058;
+    border: 1px solid #e0b058;
+    padding: 10px 18px; /* Larger padding */
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px; /* Larger font */
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
 
-        .demo-btn:hover {
-            background: #e0b058;
-            color: #1a1a1a;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(224, 176, 88, 0.2);
-        }
+.demo-btn:hover {
+    background: #e0b058;
+    color: #1a1a1a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(224, 176, 88, 0.2);
+}
 
-        /* Toggle Switch Styles */
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 50px;
-            height: 24px;
-        }
+/* Position for Buy button */
+.strategy-info .demo-btn {
+    position: absolute;
+    top: 12px;
+    right: 0;
+}
 
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
+/* Toggle Switch Styles */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
 
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #444;
-            transition: .4s;
-            border-radius: 24px;
-        }
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
 
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 18px;
-            width: 18px;
-            left: 3px;
-            bottom: 3px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
-        }
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #444;
+    transition: .4s;
+    border-radius: 24px;
+}
 
-        input:checked + .slider {
-            background-color: #e0b058;
-        }
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
 
-        input:checked + .slider:before {
-            transform: translateX(26px);
-        }
+input:checked + .slider {
+    background-color: #e0b058;
+}
 
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
         @media (max-width: 768px) {
             .header {
                 flex-direction: column;
@@ -371,14 +390,14 @@
                 </div>
                 <div class="strategy-info">
                     <h3 class="strategy-title">Value Investing</h3>
+                    <button onclick="window.location.href='#'" class="demo-btn">Buy</button>
                     <p class="strategy-description">Long-term investment approach focusing on undervalued stocks with strong fundamentals.</p>
                 </div>
                 <div class="card-actions">
                     <button onclick="window.location.href='st1.html'" class="demo-btn">Demo</button>
-                    <label class="switch">
-                        <input type="checkbox">
-                        <span class="slider"></span>
-                    </label>
+                    <button onclick="window.location.href='#'" class="demo-btn">Add to my Portfolio</button>
+                    <button onclick="window.location.href='#'" class="demo-btn">View Details</button>
+                    
                 </div>
             </div>
 
@@ -389,14 +408,14 @@
                 </div>
                 <div class="strategy-info">
                     <h3 class="strategy-title">Growth Strategy</h3>
+                    <button onclick="window.location.href='#'" class="demo-btn">Buy</button>
                     <p class="strategy-description">Focus on companies with high potential for future earnings and revenue growth.</p>
                 </div>
                 <div class="card-actions">
                     <button onclick="window.location.href='st2.html'" class="demo-btn">Demo</button>
-                    <label class="switch">
-                        <input type="checkbox">
-                        <span class="slider"></span>
-                    </label>
+                    <button onclick="window.location.href='#'" class="demo-btn">Add to my Portfolio</button>
+                    <button onclick="window.location.href='#'" class="demo-btn">View Details</button>
+                    
                 </div>
             </div>
 
@@ -407,14 +426,13 @@
                 </div>
                 <div class="strategy-info">
                     <h3 class="strategy-title">Dividend Strategy</h3>
+                    <button onclick="window.location.href='#'" class="demo-btn">Buy</button>
                     <p class="strategy-description">Investment in stable companies that provide regular dividend payments.</p>
                 </div>
                 <div class="card-actions">
                     <button onclick="window.location.href='st3.html'" class="demo-btn">Demo</button>
-                    <label class="switch">
-                        <input type="checkbox">
-                        <span class="slider"></span>
-                    </label>
+                    <button onclick="window.location.href='#'" class="demo-btn">Add to my Portfolio</button>
+                    <button onclick="window.location.href='#'" class="demo-btn">View Details</button>
                 </div>
             </div>
 
@@ -425,14 +443,13 @@
                 </div>
                 <div class="strategy-info">
                     <h3 class="strategy-title">Momentum Trading</h3>
+                    <button onclick="window.location.href='#'" class="demo-btn">Buy</button>
                     <p class="strategy-description">Capitalize on continuing market trends and price movements.</p>
                 </div>
                 <div class="card-actions">
                     <button onclick="window.location.href='st4.html'" class="demo-btn">Demo</button>
-                    <label class="switch">
-                        <input type="checkbox">
-                        <span class="slider"></span>
-                    </label>
+                    <button onclick="window.location.href='#'" class="demo-btn">Add to my Portfolio</button>
+                    <button onclick="window.location.href='#'" class="demo-btn">View Details</button>
                 </div>
             </div>
 
@@ -443,14 +460,13 @@
                 </div>
                 <div class="strategy-info">
                     <h3 class="strategy-title">Index Investment</h3>
+                    <button onclick="window.location.href='#'" class="demo-btn">Buy</button>
                     <p class="strategy-description">Passive strategy tracking market indices for consistent returns.</p>
                 </div>
                 <div class="card-actions">
                     <button onclick="window.location.href='st5.html'" class="demo-btn">Demo</button>
-                    <label class="switch">
-                        <input type="checkbox">
-                        <span class="slider"></span>
-                    </label>
+                    <button onclick="window.location.href='#'" class="demo-btn">Add to my Portfolio</button>
+                    <button onclick="window.location.href='#'" class="demo-btn">View Details</button>
                 </div>
             </div>
 
@@ -461,14 +477,13 @@
                 </div>
                 <div class="strategy-info">
                     <h3 class="strategy-title">Swing Trading</h3>
+                    <button onclick="window.location.href='#'" class="demo-btn">Buy</button>
                     <p class="strategy-description">Short to medium-term trading capturing price movements.</p>
                 </div>
                 <div class="card-actions">
                     <button onclick="window.location.href='st6.html'" class="demo-btn">Demo</button>
-                    <label class="switch">
-                        <input type="checkbox">
-                        <span class="slider"></span>
-                    </label>
+                    <button onclick="window.location.href='#'" class="demo-btn">Add to my Portfolio</button>
+                    <button onclick="window.location.href='#'" class="demo-btn">View Details</button>
                 </div>
             </div>
 
@@ -479,14 +494,13 @@
                 </div>
                 <div class="strategy-info">
                     <h3 class="strategy-title">Day Trading</h3>
+                    <button onclick="window.location.href='#'" class="demo-btn">Buy</button>
                     <p class="strategy-description">Active trading strategy with positions opened and closed within the same day.</p>
                 </div>
                 <div class="card-actions">
                     <button onclick="window.location.href='st7.html'" class="demo-btn">Demo</button>
-                    <label class="switch">
-                        <input type="checkbox">
-                        <span class="slider"></span>
-                    </label>
+                    <button onclick="window.location.href='#'" class="demo-btn">Add to my Portfolio</button>
+                    <button onclick="window.location.href='#'" class="demo-btn">View Details</button>
                 </div>
             </div>
 
@@ -497,14 +511,13 @@
                 </div>
                 <div class="strategy-info">
                     <h3 class="strategy-title">Options Strategy</h3>
+                    <button onclick="window.location.href='#'" class="demo-btn">Buy</button>
                     <p class="strategy-description">Advanced trading using options contracts for leverage and hedging.</p>
                 </div>
                 <div class="card-actions">
                     <button onclick="window.location.href='st8.html'" class="demo-btn">Demo</button>
-                    <label class="switch">
-                        <input type="checkbox">
-                        <span class="slider"></span>
-                    </label>
+                    <button onclick="window.location.href='#'" class="demo-btn">Add to my Portfolio</button>
+                    <button onclick="window.location.href='#'" class="demo-btn">View Details</button>
                 </div>
             </div>
 
@@ -515,14 +528,13 @@
                 </div>
                 <div class="strategy-info">
                     <h3 class="strategy-title">Sector Rotation</h3>
+                    <button onclick="window.location.href='#'" class="demo-btn">Buy</button>
                     <p class="strategy-description">Dynamic allocation across different market sectors based on economic cycles.</p>
                 </div>
                 <div class="card-actions">
                     <button onclick="window.location.href='st9.html'" class="demo-btn">Demo</button>
-                    <label class="switch">
-                        <input type="checkbox">
-                        <span class="slider"></span>
-                    </label>
+                    <button onclick="window.location.href='#'" class="demo-btn">Add to my Portfolio</button>
+                    <button onclick="window.location.href='#'" class="demo-btn">View Details</button>
                 </div>
             </div>
 
@@ -533,14 +545,13 @@
                 </div>
                 <div class="strategy-info">
                     <h3 class="strategy-title">Income Strategy</h3>
+                    <button onclick="window.location.href='#'" class="demo-btn">Buy</button>
                     <p class="strategy-description">Focus on generating regular income through various investment vehicles.</p>
                 </div>
                 <div class="card-actions">
                     <button onclick="window.location.href='st10.html'" class="demo-btn">Demo</button>
-                    <label class="switch">
-                        <input type="checkbox">
-                        <span class="slider"></span>
-                    </label>
+                    <button onclick="window.location.href='#'" class="demo-btn">Add to my Portfolio</button>
+                    <button onclick="window.location.href='#'" class="demo-btn">View Details</button>
                 </div>
             </div>
         </div>
