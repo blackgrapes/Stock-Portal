@@ -27,7 +27,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('media/bg.jpg') no-repeat center center/cover;
+            background: url('media/image.png') no-repeat center center/cover;
             opacity: 0.5;
             z-index: -1;
         }
@@ -268,8 +268,7 @@
                         <label for="strategy">Strategy:</label>
                         <select id="strategy">
                             <option value="adx">ADX</option>
-                            <option value="rsi">RSI</option>
-                            <option value="macd">MACD</option>
+
                             <option value="macd">none</option>
                         </select>
 
@@ -281,8 +280,11 @@
                             <option value="macd">none</option>
                         </select>
 
-                        <label for="target">Target:</label>
+                        <label for="target">Target-Buy:</label>
                         <input type="number" id="target" placeholder="Enter target value">
+
+                        <label for="stop-loss">Stop Loss-Buy:</label>
+                        <input type="number" id="stop-loss" placeholder="Enter stop loss value">
                     </div>
 
                     <!-- Right Column -->
@@ -294,12 +296,18 @@
                             <option value="macd">none</option>
                         </select>
 
-                        <label for="stop-loss">Stop Loss:</label>
+                        <label for="stop-loss">Qty:</label>
+                        <input type="number" id="stop-loss" placeholder="Enter quantity value">
+
+                        <label for="target">Target-Sell:</label>
+                        <input type="number" id="target" placeholder="Enter target value">
+    
+                        <label for="stop-loss">Stop Loss-Sell:</label>
                         <input type="number" id="stop-loss" placeholder="Enter stop loss value">
-                            <div class="submit-container">
-                                <br><br><button class="submit-btn">Create Strategy</button>
-                            </div>
+
                     </div>
+                </div> <div class="submit-container">
+                    <br><br><button class="submit-btn">Create Strategy</button>
                 </div>
             </div>
 
@@ -313,6 +321,45 @@
         <input type="number" id="profit" placeholder="Calculated Profit" disabled>
     </div>
 
+    <script>
+        document.querySelector(".submit-btn").addEventListener("click", function() {
+            let target = document.getElementById("target").value;
+            let stopLoss = document.getElementById("stop-loss").value;
+            let quantity = document.getElementById("quantity").value;
+            let strategy = document.getElementById("strategy").value;
+        
+            // Ensure all inputs are filled
+            if (!target || !stopLoss || !quantity) {
+                alert("Please enter all values.");
+                return;
+            }
+        
+            let data = {
+                target: parseFloat(target),
+                stop_loss: parseFloat(stopLoss),
+                quantity: parseInt(quantity),
+                strategy: strategy
+            };
+        
+            // Send data to backend
+            fetch("http://127.0.0.1:5001/st1data", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("Response:", data);
+                alert("Trade Order Processed!");
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("Something went wrong!");
+            });
+        });
+        </script>
 
 </body>
 </html>
