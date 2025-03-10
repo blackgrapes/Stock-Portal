@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.564);
+            position: relative;
+        }
+        
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('media/image.png') no-repeat center center/cover;
+            opacity: 0.; /* Decreased opacity */
+            z-index: -1;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            position: relative;
+            z-index: 1;
+        }
+        .logo {
+            font-size: 36px;
+            font-weight: bold;
+            color: wheat;
+        }
+        .login {
+            background-color:wheat;
+            color: rgba(35, 13, 0, 0.852);
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .container {
+            position: relative;
+            z-index: 1;
+            margin-top: 150px;
+            color: wheat;
+        }
+        h1 {
+            font-size: 48px;
+            font-weight: bold;
+        }
+        p {
+            font-size: 18px;
+            
+        }
+        
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px 30px;
+            background-color: #00b386;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 5px;
+        }
+        .content{
+            width: 750px;
+            margin: auto;
+        }
+        #quote {
+            color: wheat;
+            position: fixed;
+            right: 2rem;
+            bottom: 0.2rem;
+            font-size: smaller; /* Reduced font size */
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">StockPortal</div>
+        <a href="login.html" class="login">Login/Register</a>
+    </div>
+    <div class="container">
+        <h1>Your one-stop stock market hub.</h1>
+        <p>Built for smart investors.</p>
+        <div class="content">
+        <p>Welcome to StockPortal – your easy-to-use hub for tracking stocks, 
+            managing investments, and making smarter trading decisions. Stay 
+            informed, invest confidently!</p> </div>
+        <a href="login.html" class="btn">Get Started</a>
+    </div>
+
+    <div id="quote">
+        <p>Regret is the lifetime disease of investment. So buy our strategies!</p>
+    </div>
+</body>
+</html>
