@@ -9,315 +9,241 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
+        
         body {
-            background-color: rgba(0, 0, 0, 0.553);
-            color: white;
+            background-color: #0a1b2b;
+            color: #ffffff;
             min-height: 100vh;
         }
-
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
         body::before {
             content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('media/image.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-           
-            opacity: 0.7;
+            inset: 0;
+            background: linear-gradient(rgba(10, 27, 43, 0.7), rgba(10, 27, 43, 0.9)),
+                        url('media/home.jpg') no-repeat center center/cover;
             z-index: -1;
+            opacity: 0.5; /* 🔁 You can change this value (0.1 to 1) to control the image opacity */
         }
-
-        /* Ensure the container has appropriate constraints */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
+        
+        /* Header Section */
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 40px;
+            flex-wrap: wrap;
         }
-
-        .back-btn {
-            background: black;
+        
+        .back-btn,
+        .logout-btn {
+            background: linear-gradient(135deg, #00bfff, #007acc);
+            color: #fff;
             border: none;
-            color: white;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            font-size: 16px;
-            text-decoration: none;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            transform: scale(1);
-            animation: fadeInSlide 0.6s ease-in-out;
+            padding: 10px 18px;
+            border-radius: 30px;
             font-weight: 600;
-            padding: 10px 16px;
-            border-radius: 8px;
-            gap: 8px;
+            cursor: pointer;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 191, 255, 0.3);
         }
-
-        .back-btn:hover {
-            color: white;
-            background-color: #e0b058;
-            transform: scale(1.03);
-            box-shadow: 0 6px 12px rgba(218, 165, 32, 0.4);
+        
+        .back-btn:hover,
+        .logout-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 6px 20px rgba(0, 191, 255, 0.4);
         }
-
+        
         .header-center {
             display: flex;
             align-items: center;
             gap: 20px;
             flex-grow: 1;
             justify-content: center;
+            flex-wrap: wrap;
         }
-
+        
         .balance-display {
+            background-color: #102c4e;
+            padding: 10px 20px;
+            border-radius: 12px;
+            border: 1px solid #00bfff;
             display: flex;
             align-items: center;
-            background-color: rgba(42, 42, 42, 0.7);
-            padding: 10px 15px;
-            border-radius: 8px;
-            border: 1px solid rgba(224, 176, 88, 0.3);
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
         }
-
+        
         .balance-icon {
-            color: #e0b058;
-            margin-right: 8px;
+            color: #00bfff;
+            margin-right: 10px;
         }
-
+        
         .balance-text {
             font-size: 14px;
-            color: #ccc;
+            color: #cdd6f4;
         }
-
+        
         .balance-amount {
             font-size: 16px;
             font-weight: bold;
-            color: #e0b058;
+            color: #00bfff;
             margin-left: 6px;
         }
-
+        
         .search-container {
             position: relative;
         }
-
+        
         .search-input {
-            background-color: #2a2a2a;
+            background-color: #102c4e;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             color: white;
-            padding: 12px 40px;
-            width: 400px;
+            padding: 12px 48px;
+            width: 300px;
             font-size: 14px;
-            transition: all 0.3s ease;
-        }
-
-        .search-input:focus {
-            outline: none;
-            box-shadow: 0 0 0 2px goldenrod;
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #666;
-        }
-
-    
-
-        .strategy-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr); /* Changed to exactly 2 columns */
-            gap: 32px; /* Increased gap between cards for better spacing */
-            padding: 20px 0;
-            max-width: 1200px;
-            margin: 0 auto;
+            transition: 0.3s ease;
         }
         
-        /* Update card width to fit better in the 2-column layout */
+        .search-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #00bfff;
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #00bfff;
+        }
+        
+        /* Strategy Cards */
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 28px;
+        }
+        
         .strategy-card {
-            background-color:rgb(25, 23, 23);
-            border-radius: 12px;
-            padding: 32px;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
+            background: linear-gradient(135deg,rgba(16, 44, 78, 0.19) 0%, #0c223b 100%);
+            border-radius: 20px;
+            padding: 28px;
+            transition: all 0.4s ease;
             display: flex;
             flex-direction: column;
-            width: 100%; /* Changed from fixed width to 100% to be responsive */
-            min-height: 280px; /* Changed to min-height instead of fixed height */
-            height: auto; /* Allow height to adapt to content */
+            box-shadow: 0 8px 20px rgba(0, 191, 255, 0.05);
+            position: relative;
+            overflow: hidden;
         }
-
-.strategy-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 20px 25px -5px rgba(255, 215, 0, 0.1);
-}
-
-.strategy-header {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    margin-bottom: 20px; /* Increased margin */
-}
-
-.serial-number {
-    background-color: #e0b058;
-    color: #1a1a1a;
-    width: 32px; /* Slightly larger */
-    height: 32px; /* Slightly larger */
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 16px; /* Slightly larger font */
-}
-
-.strategy-info {
-    flex: 1;
-    position: relative; /* Add position relative */
-}
-
-.strategy-title {
-    color: #e0b058;
-    font-size: 24px; /* Larger font size */
-    margin: 12px 0;
-    font-weight: bold;
-    /* Adjust to make space for the buy button */
-    padding-right: 80px;
-    display: inline-block;
-}
-
-.strategy-description {
-    color: #ccc;
-    font-size: 16px; /* Larger font size */
-    line-height: 1.5;
-    margin-bottom: 24px; /* Increased margin */
-}
-
-.card-actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: auto;
-    gap: 12px; /* Add gap between buttons */
-}
-
-.demo-btn {
-    background: #1a1a1a;
-    color: #e0b058;
-    border: 1px solid #e0b058;
-    padding: 10px 18px; /* Larger padding */
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 15px; /* Larger font */
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-.demo-btn:hover {
-    background: #e0b058;
-    color: #1a1a1a;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(224, 176, 88, 0.2);
-}
-
-/* Position for Buy button */
-.strategy-info .demo-btn {
-    position: absolute;
-    top: 12px;
-    right: 0;
-}
-
-/* Toggle Switch Styles */
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 50px;
-    height: 24px;
-}
-
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #444;
-    transition: .4s;
-    border-radius: 24px;
-}
-
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 18px;
-    width: 18px;
-    left: 3px;
-    bottom: 3px;
-    background-color: white;
-    transition: .4s;
-    border-radius: 50%;
-}
-
-input:checked + .slider {
-    background-color: #e0b058;
-}
-
-input:checked + .slider:before {
-    transform: translateX(26px);
-}
+        
+        .strategy-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 191, 255, 0.2);
+        }
+        
+        .strategy-header {
+            margin-bottom: 20px;
+        }
+        
+        .serial-number {
+            background-color: #00bfff;
+            color: #0a1b2b;
+            font-weight: bold;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 16px;
+        }
+        
+        .strategy-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #00bfff;
+            margin: 12px 0 4px;
+        }
+        
+        .strategy-description {
+            font-size: 15px;
+            color: #cbd7f5;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+        
+        /* Card Buttons */
+        .card-actions {
+            margin-top: auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .demo-btn {
+            background-color: transparent;
+            border: 2px solid #ffbb00;
+            color: #ffbb00;
+            padding: 10px 18px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .demo-btn:hover {
+            background-color: #ffbb00;
+            color: #0a1b2b;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 187, 0, 0.3);
+        }
+        
+        /* Buy Button (moved to normal flow) */
+        .strategy-info > .demo-btn {
+            align-self: flex-start;
+            margin-bottom: 12px;
+            background-color: #00bfff;
+            border: none;
+            color: #0a1b2b;
+        }
+        
+        .strategy-info > .demo-btn:hover {
+            background-color: #009fd1;
+            color: white;
+        }
+        
+        /* Responsive */
         @media (max-width: 768px) {
             .header {
                 flex-direction: column;
                 gap: 20px;
             }
-
+        
             .header-center {
                 flex-direction: column;
                 width: 100%;
             }
-
-            .balance-display {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .search-container {
-                width: 100%;
-            }
-
+        
+            .balance-display,
+            .search-container,
             .search-input {
                 width: 100%;
             }
-
+        
             .strategy-grid {
                 grid-template-columns: 1fr;
             }
         }
+        
     </style>
 </head>
 <body>
@@ -350,7 +276,14 @@ input:checked + .slider:before {
                     <input type="text" class="search-input" placeholder="Search strategies...">
                 </div>
             </div>
-           
+            <button onclick="window.location.href='login.html'" class="logout-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                    <polyline points="16 17 21 12 16 7"></polyline>
+                    <line x1="21" y1="12" x2="9" y2="12"></line>
+                </svg>
+                Logout
+            </button>
         </div>
 
         <div class="strategy-grid">

@@ -1,394 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Stock Portal</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - Stock Portal</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: rgba(0, 0, 0, 0.564);
-            color: #2c3e50;
-            line-height: 1.6;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0a192f;
+      color: #ccd6f6;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      
+    }
 
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background: url('media/image.png');
-            opacity: 0.5;
-            background-position: center;
-            background-repeat: no-repeat;
-            opacity: 0.7;
-            z-index: -1;
-        }
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('media/home.jpg') no-repeat center center / cover;
+      opacity: 0.2; /* subtle background image */
+      z-index: -2;
+    }
 
-        .login-container {
-            background: #fffffff7;
-            padding: 32px;
-            border-radius: 8px;
-            width: 400px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, #0a192f, #0f172a);
+      opacity: 0.1;
+      z-index: -1;
+    }
 
-        .login-header {
-            text-align: center;
-            margin-bottom: 24px;
-        }
+    .login-container {
+      background: rgba(15, 23, 42, 0.8);
+      padding: 32px;
+      border-radius: 12px;
+      width: 400px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
 
-        .login-header h2 {
-            color: #000000;
-            font-size: 24px;
-            margin-bottom: 8px;
-        }
+    .login-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
 
-        .login-form {
-            margin-top: 24px;
-        }
+    .login-header h2 {
+      color: #38bdf8;
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
+    .form-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #606c7c;
-            font-weight: 500;
-        }
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: #94a3b8;
+      font-weight: 500;
+    }
 
-        .form-group input {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e1e5ea;
-            border-radius: 4px;
-            font-size: 14px;
-            transition: border-color 0.3s ease;
-        }
+    .form-group input {
+      width: 100%;
+      padding: 12px;
+      background-color: #1e293b;
+      border: 1.5px solid #334155;
+      color: #f1f5f9;
+      border-radius: 6px;
+      font-size: 14px;
+      transition: 0.3s ease;
+    }
 
-        .form-group input:focus {
-            outline: none;
-            border-color: goldenrod;
-        }
+    .form-group input:focus {
+      outline: none;
+      border-color: #38bdf8;
+      background-color: #0f172a;
+    }
 
-        .btn-primary {
-            width: 100%;
-            padding: 12px;
-            background: #000000;
-            color: wheat;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+    .btn-primary {
+      width: 100%;
+      padding: 12px;
+      background: #22c55e;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+    }
 
-        .btn-primary:hover {
-            background: goldenrod;
-            color: #000000;
-            transform: translateY(-2px);
-        }
+    .btn-primary:hover {
+      background: #16a34a;
+      transform: translateY(-2px);
+    }
 
-        .form-footer {
-            margin-top: 20px;
-            text-align: center;
-            color: #606c7c;
-        }
+    .form-footer {
+      margin-top: 20px;
+      text-align: center;
+      color: #64748b;
+    }
 
-        .form-footer a {
-            color: goldenrod;
-            text-decoration: none;
-            font-weight: 500;
-        }
+    .form-footer a {
+      color: #facc15;
+      text-decoration: none;
+      font-weight: 500;
+    }
 
-        .form-footer a:hover {
-            text-decoration: underline;
-        }
+    .form-footer a:hover {
+      text-decoration: underline;
+    }
 
-        .back-to-home {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            color: white;
-            background-color: black;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 600;
-            padding: 10px 16px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transform: scale(1);
-            animation: fadeInSlide 0.6s ease-in-out;
-        }
-        
-        .back-to-home:hover {
-            color: white;
-            background-color: goldenrod;
-            transform: scale(1.03);
-            box-shadow: 0 6px 12px rgba(218, 165, 32, 0.4);
-        }
-        
-        /* Entrance Animation */
-        @keyframes fadeInSlide {
-            0% {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-    </style>
+    .back-to-home {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      color: #facc15;
+      background-color: transparent;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      padding: 10px 16px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      border: 1px solid #facc15;
+    }
+
+    .back-to-home:hover {
+      background-color: #facc15;
+      color: #0a192f;
+      transform: scale(1.03);
+      box-shadow: 0 6px 12px rgba(250, 204, 21, 0.3);
+    }
+
+    @keyframes fadeInSlide {
+      0% {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
 </head>
 <body>
-    <button onclick="window.location.href='home.html' " class="back-to-home">
-        <i class="fas fa-arrow-left"></i> Back to Home
-    </button>
+  <button onclick="window.location.href='home.html'" class="back-to-home">
+    <i class="fas fa-arrow-left"></i> Back to Home
+  </button>
 
-    <div class="login-container">
-        <div class="login-header">
-            <h2>Login to Stock Portal</h2>
-        </div>
-        <form class="login-form" onsubmit="redirectToStrategies(event)">
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button type="submit" class="btn-primary">Login</button>
-            <p class="form-footer">Don't have an account? <a href="register.html">Register here</a></p>
-        </form>
+  <div class="login-container">
+    <div class="login-header">
+      <h2>Login to Stock Portal</h2>
     </div>
-    
-    <script>
-        function redirectToStrategies(event) {
-            event.preventDefault(); // Prevents the default form submission
-            window.location.href = "index.html"; // Redirects to strategies.html
-        }
-    </script>
-    
-</body>
-</html>
+    <form class="login-form" onsubmit="redirectToStrategies(event)">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required />
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required />
+      </div>
+      <button type="submit" class="btn-primary">Login</button>
+      <p class="form-footer">Don't have an account? <a href="register.html">Register here</a></p>
+    </form>
+  </div>
 
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Stock Portal</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: rgba(0, 0, 0, 0.564);
-            color: #2c3e50;
-            line-height: 1.6;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background: url('media/image.png');
-            opacity: 0.5;
-            background-position: center;
-            background-repeat: no-repeat;
-            opacity: 0.7;
-            z-index: -1;
-        }
-
-        .login-container {
-            background: #fffffff7;
-            padding: 32px;
-            border-radius: 8px;
-            width: 400px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .login-header {
-            text-align: center;
-            margin-bottom: 24px;
-        }
-
-        .login-header h2 {
-            color: #000000;
-            font-size: 24px;
-            margin-bottom: 8px;
-        }
-
-        .login-form {
-            margin-top: 24px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #606c7c;
-            font-weight: 500;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e1e5ea;
-            border-radius: 4px;
-            font-size: 14px;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: goldenrod;
-        }
-
-        .btn-primary {
-            width: 100%;
-            padding: 12px;
-            background: #000000;
-            color: wheat;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .btn-primary:hover {
-            background: goldenrod;
-            color: #000000;
-            transform: translateY(-2px);
-        }
-
-        .form-footer {
-            margin-top: 20px;
-            text-align: center;
-            color: #606c7c;
-        }
-
-        .form-footer a {
-            color: goldenrod;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .form-footer a:hover {
-            text-decoration: underline;
-        }
-
-        .back-to-home {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            color: white;
-            background-color: black;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 600;
-            padding: 10px 16px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transform: scale(1);
-            animation: fadeInSlide 0.6s ease-in-out;
-        }
-        
-        .back-to-home:hover {
-            color: white;
-            background-color: goldenrod;
-            transform: scale(1.03);
-            box-shadow: 0 6px 12px rgba(218, 165, 32, 0.4);
-        }
-        
-        /* Entrance Animation */
-        @keyframes fadeInSlide {
-            0% {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-    </style>
-</head>
-<body>
-    <button onclick="window.location.href='home.html' " class="back-to-home">
-        <i class="fas fa-arrow-left"></i> Back to Home
-    </button>
-
-    <div class="login-container">
-        <div class="login-header">
-            <h2>Login to Stock Portal</h2>
-        </div>
-        <form class="login-form" onsubmit="redirectToStrategies(event)">
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button type="submit" class="btn-primary">Login</button>
-            <p class="form-footer">Don't have an account? <a href="register.html">Register here</a></p>
-        </form>
-    </div>
-    
-    <script>
-        function redirectToStrategies(event) {
-            event.preventDefault(); // Prevents the default form submission
-            window.location.href = "index.html"; // Redirects to strategies.html
-        }
-    </script>
-    
+  <script>
+    function redirectToStrategies(event) {
+      event.preventDefault();
+      window.location.href = "index.html";
+    }
+  </script>
 </body>
 </html>
